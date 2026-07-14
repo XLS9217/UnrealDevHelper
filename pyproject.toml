@@ -9,12 +9,5 @@ dependencies = [
     "psutil>=5.9",
 ]
 
-[project.scripts]
-unrealdevhelper-mcp = "unrealdevhelper.server:main"
-
 [tool.uv]
-package = true
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+package = false

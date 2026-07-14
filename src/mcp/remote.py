@@ -1,4 +1,4 @@
-"""Small adapter around Unreal Engine's bundled ``remote_execution.py``."""
+"""Adapter around Unreal Engine's bundled ``remote_execution.py``."""
 
 from __future__ import annotations
 

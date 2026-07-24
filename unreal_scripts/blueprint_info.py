@@ -1,6 +1,6 @@
 """Return JSON-safe information about a Blueprint class default object.
 
-The MCP server injects BLUEPRINT_PATH, INCLUDE_PRIVATE, MAX_DEPTH, and
+The application layer injects BLUEPRINT_PATH, INCLUDE_PRIVATE, MAX_DEPTH, and
 MAX_ITEMS before executing this file inside Unreal Editor.
 """
 

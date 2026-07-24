@@ -8,3 +8,6 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Project-local uv cache used in restricted environments
+.uv-cache/

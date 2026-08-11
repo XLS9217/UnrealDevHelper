@@ -1,4 +1,4 @@
-"""Allow ``python -m unreal_dev_helper`` to run the CLI."""
+"""Allow ``python -m src`` to run the CLI."""
 
 from .cli import main
 

@@ -11,7 +11,7 @@ from .backend import UnrealBackend, UnrealRemoteBackend
 
 
 RESULT_MARKER = "UNREALDEVHELPER_RESULT:"
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 SCRIPTS_DIR = PROJECT_ROOT / "unreal_scripts"
 _VARIABLE_NAME = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
 
@@ -60,7 +60,7 @@ def marked_result(response: dict[str, Any]) -> Any:
 
 
 class UnrealApplication:
-    """Allowlisted use cases exposed by the backend daemon."""
+    """Integration operations shared by CLI and future MCP adapters."""
 
     def __init__(
         self,
@@ -71,28 +71,24 @@ class UnrealApplication:
         self.backend = backend or UnrealRemoteBackend()
         self.scripts_dir = scripts_dir.resolve()
 
-    def status(self, wait_seconds: float = 1.5) -> dict[str, Any]:
+    def discover(self, wait_seconds: float = 1.5) -> dict[str, Any]:
         nodes = self.backend.discover(wait_seconds=max(0.0, min(wait_seconds, 10.0)))
         return {"connected": bool(nodes), "nodes": nodes}
 
     def execute_python(
         self,
         code: str,
-        *,
-        node_id: str | None = None,
     ) -> dict[str, Any]:
         """Execute Python supplied by an agent for read-only inspection."""
         if not code.strip():
             raise ValueError("Python source must not be empty.")
-        return self.backend.execute(code, node_id=node_id)
+        return self.backend.execute(code)
 
     def _execute_script(
         self,
         script_name: str,
         *,
         variables: Mapping[str, Any] | None = None,
-        node_id: str | None = None,
-        raw_response: bool = False,
     ) -> Any:
         script_path = (self.scripts_dir / script_name).resolve()
         try:
@@ -110,25 +106,16 @@ class UnrealApplication:
 
         script = script_path.read_text(encoding="utf-8")
         source = "\n".join(assignments + (["", script] if assignments else [script]))
-        response = self.backend.execute(source, node_id=node_id)
-        return response if raw_response else marked_result(response)
+        return marked_result(self.backend.execute(source))
 
-    def blueprint_info(
+    def inspect_uasset(
         self,
         asset_path: str,
-        *,
-        include_private: bool = False,
-        max_depth: int = 3,
-        max_items: int = 128,
-        node_id: str | None = None,
     ) -> dict[str, Any]:
+        normalized_path = str(asset_path).strip()
+        if not normalized_path:
+            raise ValueError("An Unreal asset path is required.")
         return self._execute_script(
-            "blueprint_info.py",
-            variables={
-                "BLUEPRINT_PATH": asset_path,
-                "INCLUDE_PRIVATE": bool(include_private),
-                "MAX_DEPTH": max(0, min(int(max_depth), 8)),
-                "MAX_ITEMS": max(1, min(int(max_items), 2048)),
-            },
-            node_id=node_id,
+            "inspect_uasset.py",
+            variables={"ASSET_PATH": normalized_path},
         )

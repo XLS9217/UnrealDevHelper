@@ -1,0 +1,259 @@
+{
+  "asset_path": "/Game/TheAgentGame/BP_AgenticCharacter",
+  "inspection": {
+    "schema_version": 1,
+    "ok": true,
+    "data": {
+      "asset_path": "/Game/TheAgentGame/BP_AgenticCharacter.BP_AgenticCharacter",
+      "name": "BP_AgenticCharacter",
+      "parent_class": "/Script/TheAgentGame.AgenticCharacter",
+      "generated_class": "/Game/TheAgentGame/BP_AgenticCharacter.BP_AgenticCharacter_C",
+      "interfaces": [],
+      "variables": [
+        {
+          "name": "NewVar",
+          "id": "004378d3-4f7e-a141-27df-feb22a9377e1",
+          "type": {
+            "category": "name",
+            "subcategory": "None",
+            "subcategory_object": "",
+            "container": "array",
+            "is_reference": false,
+            "is_const": false
+          },
+          "default_value": ""
+        }
+      ],
+      "components": [],
+      "graphs": [
+        {
+          "name": "EventGraph",
+          "id": "e55f2d70-4fc1-fd57-6a6d-1a8b1dbcf083",
+          "kind": "event",
+          "schema": "/Script/BlueprintGraph.EdGraphSchema_K2",
+          "nodes": [
+            {
+              "id": "d2b8f7df-40b4-3b32-562c-64b7dbf81f02",
+              "class": "/Script/BlueprintGraph.K2Node_Event",
+              "title": "Event BeginPlay",
+              "comment": "",
+              "x": 0,
+              "y": 0,
+              "pins": [
+                {
+                  "id": "83a0b8a7-4146-c48a-1deb-168006820e3f",
+                  "name": "OutputDelegate",
+                  "direction": "output",
+                  "type": {
+                    "category": "delegate",
+                    "subcategory": "None",
+                    "subcategory_object": "",
+                    "container": "none",
+                    "is_reference": false,
+                    "is_const": false
+                  },
+                  "default_value": "",
+                  "default_object": "",
+                  "default_text": "",
+                  "hidden": false,
+                  "orphaned": false,
+                  "links": []
+                },
+                {
+                  "id": "a1233c1d-4842-a89b-fe81-f3a25c9dd3e9",
+                  "name": "then",
+                  "direction": "output",
+                  "type": {
+                    "category": "exec",
+                    "subcategory": "None",
+                    "subcategory_object": "",
+                    "container": "none",
+                    "is_reference": false,
+                    "is_const": false
+                  },
+                  "default_value": "",
+                  "default_object": "",
+                  "default_text": "",
+                  "hidden": false,
+                  "orphaned": false,
+                  "links": []
+                }
+              ]
+            },
+            {
+              "id": "571d6c6f-4f9d-aef7-4c44-99b11a2cd40c",
+              "class": "/Script/BlueprintGraph.K2Node_Event",
+              "title": "Event ActorBeginOverlap",
+              "comment": "This node is disabled and will not be called.\nDrag off pins to build functionality.",
+              "x": -192,
+              "y": 272,
+              "pins": [
+                {
+                  "id": "21fc77c8-49d0-b36c-7203-c2995246fc6e",
+                  "name": "OutputDelegate",
+                  "direction": "output",
+                  "type": {
+                    "category": "delegate",
+                    "subcategory": "None",
+                    "subcategory_object": "",
+                    "container": "none",
+                    "is_reference": false,
+                    "is_const": false
+                  },
+                  "default_value": "",
+                  "default_object": "",
+                  "default_text": "",
+                  "hidden": false,
+                  "orphaned": false,
+                  "links": []
+                },
+                {
+                  "id": "c267ab5a-4198-b756-8667-8e81a4470a79",
+                  "name": "then",
+                  "direction": "output",
+                  "type": {
+                    "category": "exec",
+                    "subcategory": "None",
+                    "subcategory_object": "",
+                    "container": "none",
+                    "is_reference": false,
+                    "is_const": false
+                  },
+                  "default_value": "",
+                  "default_object": "",
+                  "default_text": "",
+                  "hidden": false,
+                  "orphaned": false,
+                  "links": []
+                },
+                {
+                  "id": "3dfb6a8f-4fea-ae38-3c12-aa8abaed7d02",
+                  "name": "OtherActor",
+                  "direction": "output",
+                  "type": {
+                    "category": "object",
+                    "subcategory": "None",
+                    "subcategory_object": "/Script/Engine.Actor",
+                    "container": "none",
+                    "is_reference": false,
+                    "is_const": false
+                  },
+                  "default_value": "",
+                  "default_object": "",
+                  "default_text": "",
+                  "hidden": false,
+                  "orphaned": false,
+                  "links": []
+                }
+              ]
+            },
+            {
+              "id": "f6811c4d-48b6-e74c-d628-42bd79309085",
+              "class": "/Script/BlueprintGraph.K2Node_Event",
+              "title": "Event Tick",
+              "comment": "",
+              "x": 0,
+              "y": 416,
+              "pins": [
+                {
+                  "id": "94712637-450f-ae0a-926a-a0a579b8745e",
+                  "name": "OutputDelegate",
+                  "direction": "output",
+                  "type": {
+                    "category": "delegate",
+                    "subcategory": "None",
+                    "subcategory_object": "",
+                    "container": "none",
+                    "is_reference": false,
+                    "is_const": false
+                  },
+                  "default_value": "",
+                  "default_object": "",
+                  "default_text": "",
+                  "hidden": false,
+                  "orphaned": false,
+                  "links": []
+                },
+                {
+                  "id": "e26f50bf-4a3a-7297-358d-79b607dba89e",
+                  "name": "then",
+                  "direction": "output",
+                  "type": {
+                    "category": "exec",
+                    "subcategory": "None",
+                    "subcategory_object": "",
+                    "container": "none",
+                    "is_reference": false,
+                    "is_const": false
+                  },
+                  "default_value": "",
+                  "default_object": "",
+                  "default_text": "",
+                  "hidden": false,
+                  "orphaned": false,
+                  "links": []
+                },
+                {
+                  "id": "0b5f19eb-43f2-30cc-c88e-eea8e2832b00",
+                  "name": "DeltaSeconds",
+                  "direction": "output",
+                  "type": {
+                    "category": "real",
+                    "subcategory": "float",
+                    "subcategory_object": "",
+                    "container": "none",
+                    "is_reference": false,
+                    "is_const": false
+                  },
+                  "default_value": "0.0",
+                  "default_object": "",
+                  "default_text": "",
+                  "hidden": false,
+                  "orphaned": false,
+                  "links": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "UserConstructionScript",
+          "id": "5f5cf1dd-4cb8-eb1e-d36b-9e960ce57626",
+          "kind": "function",
+          "schema": "/Script/BlueprintGraph.EdGraphSchema_K2",
+          "nodes": [
+            {
+              "id": "8a971502-4f7e-4675-66ea-b7a1a5f22cbb",
+              "class": "/Script/BlueprintGraph.K2Node_FunctionEntry",
+              "title": "Construction Script",
+              "comment": "",
+              "x": 0,
+              "y": 0,
+              "pins": [
+                {
+                  "id": "0b3f7106-4931-c0de-a4a2-f989ec78b819",
+                  "name": "then",
+                  "direction": "output",
+                  "type": {
+                    "category": "exec",
+                    "subcategory": "None",
+                    "subcategory_object": "",
+                    "container": "none",
+                    "is_reference": false,
+                    "is_const": false
+                  },
+                  "default_value": "",
+                  "default_object": "",
+                  "default_text": "",
+                  "hidden": false,
+                  "orphaned": false,
+                  "links": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

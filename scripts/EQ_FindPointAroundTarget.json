@@ -1,0 +1,12 @@
+{
+  "asset_path": "/Game/TheAgentGame/AI/EQ_FindPointAroundTarget",
+  "inspection": {
+    "schema_version": 1,
+    "ok": false,
+    "error": {
+      "code": "unsupported_asset_type",
+      "message": "Unsupported asset class: /Script/AIModule.EnvQuery",
+      "asset_path": "/Game/TheAgentGame/AI/EQ_FindPointAroundTarget"
+    }
+  }
+}

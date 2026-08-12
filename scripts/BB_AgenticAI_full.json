@@ -4,10 +4,6 @@
     "schema_version": 1,
     "ok": true,
     "data": {
-      "asset_path": "/Game/TheAgentGame/AI/BB_AgenticAI.BB_AgenticAI",
-      "class": "/Script/AIModule.BlackboardData",
-      "parent": "",
-      "has_synchronized_keys": false,
       "keys": [
         {
           "name": "SelfActor",

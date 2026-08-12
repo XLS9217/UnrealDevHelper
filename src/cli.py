@@ -28,6 +28,8 @@ def _parser() -> argparse.ArgumentParser:
 
     inspect = commands.add_parser("inspect-uasset", help="inspect one Unreal asset")
     inspect.add_argument("asset_path")
+    inspect.add_argument("--node", default="/")
+    inspect.add_argument("--detail", action="store_true")
     return parser
 
 
@@ -48,7 +50,15 @@ def main(argv: Sequence[str] | None = None) -> int:
             code = args.code if args.file is None else args.file.read_text(encoding="utf-8")
             data = application.execute_python(code)
         elif args.command == "inspect-uasset":
-            data = application.inspect_uasset(args.asset_path)
+            # Agent-facing CLI intentionally exposes only the concise schema.
+            if args.detail:
+                data = application.inspect_uasset_detail(
+                    args.asset_path, node=args.node, full=False
+                )
+            else:
+                data = application.inspect_uasset_outline(
+                    args.asset_path, node=args.node
+                )
         else:  # pragma: no cover
             raise ValueError(f"Unknown command: {args.command}")
     except Exception as exc:

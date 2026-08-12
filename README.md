@@ -5,7 +5,7 @@ Unreal Dev Helper lets a code agent inspect Unreal assets through two parts:
 - `UnrealDevHelperPlugin` is an editor-only Unreal plugin. Unreal loads the assets in their real project context, and the plugin exposes read-only Blueprint structure as JSON.
 - The Python CLI connects directly to the single open Unreal Editor through Python Remote Execution and calls the plugin inside that Editor process.
 
-The plugin exposes one inspection call: `unreal.UnrealDevHelperLibrary.inspect_uasset(asset_path)`. The library routes Blueprint, Behavior Tree, Blackboard, and Environment Query assets to their native inspectors. It does not modify or save assets.
+The plugin exposes `inspect_uasset_outline(asset_path, node)` for traversing an asset and `inspect_uasset_detail(asset_path, node, full)` for reading selected values. The library routes supported assets to native inspectors and never modifies or saves them.
 
 # How to use
 

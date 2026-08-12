@@ -1,0 +1,101 @@
+{
+  "asset_path": "/Game/TheAgentGame/AI/BT_AgenticAI",
+  "inspection": {
+    "schema_version": 1,
+    "ok": true,
+    "data": {
+      "root": {
+        "name": "Selector",
+        "class": "/Script/AIModule.BTComposite_Selector",
+        "description": "Selector",
+        "kind": "composite",
+        "children": [
+          {
+            "node": {
+              "name": "ActionDispatch",
+              "class": "/Script/AIModule.BTComposite_Selector",
+              "description": "Selector",
+              "kind": "composite",
+              "children": [
+                {
+                  "decorators": [
+                    {
+                      "name": "Blackboard Based Condition",
+                      "class": "/Script/AIModule.BTDecorator_Blackboard",
+                      "description": "Blackboard: CurrentAction Is Equal To Go To"
+                    }
+                  ],
+                  "node": {
+                    "name": "Sequence",
+                    "class": "/Script/AIModule.BTComposite_Sequence",
+                    "description": "Sequence",
+                    "kind": "composite",
+                    "children": [
+                      {
+                        "node": {
+                          "name": "Execute GoTo Action",
+                          "class": "/Script/TheAgentGame.ExecuteGoToAction",
+                          "description": "ExecuteGoToAction",
+                          "kind": "task"
+                        }
+                      },
+                      {
+                        "node": {
+                          "name": "Complete Action",
+                          "class": "/Script/TheAgentGame.CompleteAction",
+                          "description": "CompleteAction",
+                          "kind": "task"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "decorators": [
+                    {
+                      "name": "Blackboard Based Condition",
+                      "class": "/Script/AIModule.BTDecorator_Blackboard",
+                      "description": "Blackboard: CurrentAction Is Equal To "
+                    }
+                  ],
+                  "node": {
+                    "name": "Sequence",
+                    "class": "/Script/AIModule.BTComposite_Sequence",
+                    "description": "Sequence",
+                    "kind": "composite",
+                    "children": [
+                      {
+                        "node": {
+                          "name": "Execute Melee Attack Action",
+                          "class": "/Script/TheAgentGame.ExecuteMeleeAttackAction",
+                          "description": "ExecuteMeleeAttackAction",
+                          "kind": "task"
+                        }
+                      },
+                      {
+                        "node": {
+                          "name": "Complete Action",
+                          "class": "/Script/TheAgentGame.CompleteAction",
+                          "description": "CompleteAction",
+                          "kind": "task"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "name": "Idle",
+              "class": "/Script/AIModule.BTTask_Wait",
+              "description": "Wait: 2.00 s",
+              "kind": "task"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

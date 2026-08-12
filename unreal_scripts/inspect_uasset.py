@@ -13,7 +13,16 @@ _RESULT_MARKER = "UNREALDEVHELPER_RESULT:"
 
 
 def main():
-    raw_result = unreal.UnrealDevHelperLibrary.inspect_uasset(ASSET_PATH)
+    if OPERATION == "outline":
+        raw_result = unreal.UnrealDevHelperLibrary.inspect_uasset_outline(
+            ASSET_PATH, NODE
+        )
+    elif OPERATION == "detail":
+        raw_result = unreal.UnrealDevHelperLibrary.inspect_uasset_detail(
+            ASSET_PATH, NODE, FULL
+        )
+    else:
+        raise ValueError(f"Unknown inspection operation: {OPERATION}")
     try:
         inspection = json.loads(raw_result)
     except (TypeError, json.JSONDecodeError) as exc:

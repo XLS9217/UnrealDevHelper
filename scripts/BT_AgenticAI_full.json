@@ -4,16 +4,10 @@
     "schema_version": 1,
     "ok": true,
     "data": {
-      "asset_path": "/Game/TheAgentGame/AI/BT_AgenticAI.BT_AgenticAI",
-      "class": "/Script/AIModule.BehaviorTree",
-      "blackboard": "/Game/TheAgentGame/AI/BB_AgenticAI.BB_AgenticAI",
-      "root_decorators": [],
       "root": {
         "name": "Selector",
         "class": "/Script/AIModule.BTComposite_Selector",
         "description": "Selector",
-        "execution_index": 0,
-        "tree_depth": 0,
         "kind": "composite",
         "services": [],
         "children": [
@@ -23,8 +17,6 @@
               "name": "ActionDispatch",
               "class": "/Script/AIModule.BTComposite_Selector",
               "description": "Selector",
-              "execution_index": 1,
-              "tree_depth": 1,
               "kind": "composite",
               "services": [],
               "children": [
@@ -33,17 +25,13 @@
                     {
                       "name": "Blackboard Based Condition",
                       "class": "/Script/AIModule.BTDecorator_Blackboard",
-                      "description": "Blackboard: CurrentAction Is Equal To Go To",
-                      "execution_index": 2,
-                      "tree_depth": 2
+                      "description": "Blackboard: CurrentAction Is Equal To Go To"
                     }
                   ],
                   "node": {
                     "name": "Sequence",
                     "class": "/Script/AIModule.BTComposite_Sequence",
                     "description": "Sequence",
-                    "execution_index": 3,
-                    "tree_depth": 2,
                     "kind": "composite",
                     "services": [],
                     "children": [
@@ -53,8 +41,6 @@
                           "name": "Execute GoTo Action",
                           "class": "/Script/TheAgentGame.ExecuteGoToAction",
                           "description": "ExecuteGoToAction",
-                          "execution_index": 4,
-                          "tree_depth": 3,
                           "kind": "task",
                           "services": []
                         }
@@ -65,8 +51,6 @@
                           "name": "Complete Action",
                           "class": "/Script/TheAgentGame.CompleteAction",
                           "description": "CompleteAction",
-                          "execution_index": 5,
-                          "tree_depth": 3,
                           "kind": "task",
                           "services": []
                         }
@@ -79,17 +63,13 @@
                     {
                       "name": "Blackboard Based Condition",
                       "class": "/Script/AIModule.BTDecorator_Blackboard",
-                      "description": "Blackboard: CurrentAction Is Equal To ",
-                      "execution_index": 6,
-                      "tree_depth": 2
+                      "description": "Blackboard: CurrentAction Is Equal To "
                     }
                   ],
                   "node": {
                     "name": "Sequence",
                     "class": "/Script/AIModule.BTComposite_Sequence",
                     "description": "Sequence",
-                    "execution_index": 7,
-                    "tree_depth": 2,
                     "kind": "composite",
                     "services": [],
                     "children": [
@@ -99,8 +79,6 @@
                           "name": "Execute Melee Attack Action",
                           "class": "/Script/TheAgentGame.ExecuteMeleeAttackAction",
                           "description": "ExecuteMeleeAttackAction",
-                          "execution_index": 8,
-                          "tree_depth": 3,
                           "kind": "task",
                           "services": []
                         }
@@ -111,8 +89,6 @@
                           "name": "Complete Action",
                           "class": "/Script/TheAgentGame.CompleteAction",
                           "description": "CompleteAction",
-                          "execution_index": 9,
-                          "tree_depth": 3,
                           "kind": "task",
                           "services": []
                         }
@@ -129,8 +105,6 @@
               "name": "Idle",
               "class": "/Script/AIModule.BTTask_Wait",
               "description": "Wait: 2.00 s",
-              "execution_index": 10,
-              "tree_depth": 1,
               "kind": "task",
               "services": []
             }

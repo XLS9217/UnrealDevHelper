@@ -8,6 +8,7 @@ import re
 from typing import Any, Iterator, Mapping
 
 from .backend import UnrealBackend, UnrealRemoteBackend
+from .util.graph_parse import compact_blueprint_graphs
 
 
 RESULT_MARKER = "UNREALDEVHELPER_RESULT:"
@@ -108,14 +109,41 @@ class UnrealApplication:
         source = "\n".join(assignments + (["", script] if assignments else [script]))
         return marked_result(self.backend.execute(source))
 
-    def inspect_uasset(
+    def _inspect_uasset(
         self,
         asset_path: str,
+        *,
+        operation: str,
+        node: str = "/",
+        full: bool = False,
     ) -> dict[str, Any]:
         normalized_path = str(asset_path).strip()
         if not normalized_path:
             raise ValueError("An Unreal asset path is required.")
+        normalized_node = str(node).strip() or "/"
+        if not normalized_node.startswith("/"):
+            raise ValueError("Inspection node must start with '/'.")
         return self._execute_script(
             "inspect_uasset.py",
-            variables={"ASSET_PATH": normalized_path},
+            variables={
+                "ASSET_PATH": normalized_path,
+                "NODE": normalized_node,
+                "OPERATION": operation,
+                "FULL": bool(full),
+            },
         )
+
+    def inspect_uasset_outline(
+        self, asset_path: str, *, node: str = "/"
+    ) -> dict[str, Any]:
+        return self._inspect_uasset(asset_path, operation="outline", node=node)
+
+    def inspect_uasset_detail(
+        self, asset_path: str, *, node: str = "/", full: bool = False
+    ) -> dict[str, Any]:
+        result = self._inspect_uasset(
+            asset_path, operation="detail", node=node, full=full
+        )
+        if not full and (node == "/graphs" or node.startswith("/graphs/")):
+            return compact_blueprint_graphs(result)
+        return result

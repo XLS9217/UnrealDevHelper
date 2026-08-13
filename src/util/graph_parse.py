@@ -84,6 +84,79 @@ def _compact_graph(graph: dict[str, Any]) -> dict[str, Any] | None:
     }
 
 
+def _compact_state_machine(graph: dict[str, Any]) -> dict[str, Any]:
+    states = []
+    aliases = []
+    transitions = []
+    entry = None
+
+    for native_node in graph.get("nodes", []):
+        operation = native_node.get("operation", {})
+        kind = operation.get("kind")
+        if kind == "state":
+            state = {"name": operation.get("state", native_node.get("title", ""))}
+            if operation.get("always_reset_on_entry"):
+                state["always_reset_on_entry"] = True
+            states.append(state)
+        elif kind == "state_alias":
+            aliases.append(
+                {
+                    "name": operation.get("alias", native_node.get("title", "")),
+                    "states": operation.get("states", []),
+                    "global": operation.get("global", False),
+                }
+            )
+        elif kind == "state_entry":
+            for pin in native_node.get("pins", []):
+                if pin.get("direction") == "output" and pin.get("links"):
+                    target_id = pin["links"][0].get("node_id")
+                    target = next(
+                        (node for node in graph.get("nodes", []) if node.get("id") == target_id),
+                        {},
+                    )
+                    entry = target.get("operation", {}).get("state", target.get("title"))
+                    break
+        elif kind == "state_transition":
+            transition = {
+                key: operation[key]
+                for key in (
+                    "from",
+                    "to",
+                    "priority",
+                    "crossfade_duration",
+                    "blend_mode",
+                    "bidirectional",
+                    "disabled",
+                    "automatic_rule",
+                    "automatic_rule_trigger_time",
+                    "min_time_before_reentry",
+                    "shared_rule",
+                )
+                if key in operation
+            }
+            rule_graph = operation.get("rule_graph")
+            if rule_graph:
+                transition["rule"] = _compact_graph(rule_graph) or {
+                    "name": rule_graph.get("name", ""),
+                    "kind": "transition_rule",
+                    "nodes": [],
+                    "connections": [],
+                }
+            transitions.append(transition)
+
+    result = {
+        "name": graph.get("name", ""),
+        "kind": "state_machine",
+        "states": states,
+        "transitions": transitions,
+    }
+    if entry:
+        result["entry_state"] = entry
+    if aliases:
+        result["aliases"] = aliases
+    return result
+
+
 def compact_blueprint_graphs(result: dict[str, Any]) -> dict[str, Any]:
     """Compact graph detail while preserving the inspection envelope."""
     adapted = deepcopy(result)
@@ -97,7 +170,11 @@ def compact_blueprint_graphs(result: dict[str, Any]) -> dict[str, Any]:
             if (compact := _compact_graph(graph)) is not None
         ]
     elif "nodes" in data:
-        compact = _compact_graph(data)
+        compact = (
+            _compact_state_machine(data)
+            if data.get("kind") == "state_machine"
+            else _compact_graph(data)
+        )
         inspection["data"] = compact or {
             "name": data.get("name", ""),
             "kind": data.get("kind", ""),

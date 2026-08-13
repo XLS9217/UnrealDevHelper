@@ -146,4 +146,13 @@ class UnrealApplication:
         )
         if not full and (node == "/graphs" or node.startswith("/graphs/")):
             return compact_blueprint_graphs(result)
+        if not full and node == "/anim_assets":
+            inspection = result.get("inspection", {})
+            data = inspection.get("data", {})
+            assets = data.get("anim_assets", [])
+            inspection["data"] = {
+                "skeleton": data.get("skeleton", ""),
+                "count": len(assets),
+                "anim_assets": [asset.get("name", "") for asset in assets],
+            }
         return result

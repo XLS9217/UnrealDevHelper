@@ -1,0 +1,82 @@
+{
+  "asset_path": "/Game/Characters/Mannequins/Anims/Unarmed/ABP_Unarmed",
+  "inspection": {
+    "schema_version": 1,
+    "ok": true,
+    "data": {
+      "name": "AnimGraph",
+      "kind": "anim_graph",
+      "nodes": [
+        {
+          "id": "n1",
+          "name": "Output Pose\nAnimGraph",
+          "kind": "event"
+        },
+        {
+          "id": "n2",
+          "name": "Locomotion\nState Machine",
+          "kind": "event"
+        },
+        {
+          "id": "n3",
+          "name": "Save cached pose 'Locomotion'",
+          "kind": "event"
+        },
+        {
+          "id": "n4",
+          "name": "Main States\nState Machine",
+          "kind": "event"
+        },
+        {
+          "id": "n5",
+          "name": "Slot 'DefaultSlot'\nGroup 'DefaultGroup'",
+          "kind": "event"
+        },
+        {
+          "id": "n6",
+          "name": "Get IsFalling",
+          "kind": "variable",
+          "variable": "IsFalling"
+        },
+        {
+          "id": "n7",
+          "name": "NOT Boolean",
+          "kind": "call_function",
+          "function": "Not_PreBool",
+          "owner": "/Script/Engine.KismetMathLibrary"
+        },
+        {
+          "id": "n8",
+          "name": "Control Rig",
+          "kind": "event"
+        }
+      ],
+      "connections": [
+        {
+          "from": "n2.Pose",
+          "to": "n3.Pose"
+        },
+        {
+          "from": "n4.Pose",
+          "to": "n5.Source"
+        },
+        {
+          "from": "n5.Pose",
+          "to": "n8.Source"
+        },
+        {
+          "from": "n6.IsFalling",
+          "to": "n7.A"
+        },
+        {
+          "from": "n7.ReturnValue",
+          "to": "n8.ShouldDoIKTrace"
+        },
+        {
+          "from": "n8.Pose",
+          "to": "n1.Result"
+        }
+      ]
+    }
+  }
+}

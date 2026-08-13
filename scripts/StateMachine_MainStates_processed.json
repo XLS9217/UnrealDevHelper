@@ -1,0 +1,277 @@
+{
+  "asset_path": "/Game/Characters/Mannequins/Anims/Unarmed/ABP_Unarmed",
+  "inspection": {
+    "schema_version": 1,
+    "ok": true,
+    "data": {
+      "name": "Main States",
+      "kind": "state_machine",
+      "states": [
+        {
+          "name": "Locomotion"
+        },
+        {
+          "name": "Jump",
+          "always_reset_on_entry": true
+        },
+        {
+          "name": "Fall Loop",
+          "always_reset_on_entry": true
+        },
+        {
+          "name": "Land",
+          "always_reset_on_entry": true
+        }
+      ],
+      "transitions": [
+        {
+          "from": "To Falling",
+          "to": "Jump",
+          "priority": 1,
+          "crossfade_duration": 0.15000000596046448,
+          "blend_mode": "Cubic",
+          "bidirectional": false,
+          "disabled": false,
+          "automatic_rule": false,
+          "automatic_rule_trigger_time": -1,
+          "min_time_before_reentry": -1,
+          "shared_rule": "",
+          "rule": {
+            "name": "Transition",
+            "kind": "transition_rule",
+            "nodes": [
+              {
+                "id": "n1",
+                "name": "Result",
+                "kind": "event"
+              },
+              {
+                "id": "n2",
+                "name": "Get IsFalling",
+                "kind": "variable",
+                "variable": "IsFalling"
+              },
+              {
+                "id": "n3",
+                "name": "AND Boolean",
+                "kind": "call_function",
+                "function": "BooleanAND",
+                "owner": "/Script/Engine.KismetMathLibrary"
+              },
+              {
+                "id": "n4",
+                "name": "Get",
+                "kind": "variable",
+                "variable": "Velocity"
+              },
+              {
+                "id": "n5",
+                "name": "float > float",
+                "kind": "call_function",
+                "function": "Greater_DoubleDouble",
+                "owner": "/Script/Engine.KismetMathLibrary",
+                "inputs": {
+                  "B": "100.000000"
+                }
+              }
+            ],
+            "connections": [
+              {
+                "from": "n2.IsFalling",
+                "to": "n3.A"
+              },
+              {
+                "from": "n3.ReturnValue",
+                "to": "n1.bCanEnterTransition"
+              },
+              {
+                "from": "n4.Velocity_Z",
+                "to": "n5.A"
+              },
+              {
+                "from": "n5.ReturnValue",
+                "to": "n3.B"
+              }
+            ]
+          }
+        },
+        {
+          "from": "To Falling",
+          "to": "Fall Loop",
+          "priority": 2,
+          "crossfade_duration": 0.4000000059604645,
+          "blend_mode": "Cubic",
+          "bidirectional": false,
+          "disabled": false,
+          "automatic_rule": false,
+          "automatic_rule_trigger_time": -1,
+          "min_time_before_reentry": -1,
+          "shared_rule": "",
+          "rule": {
+            "name": "Transition",
+            "kind": "transition_rule",
+            "nodes": [
+              {
+                "id": "n1",
+                "name": "Result",
+                "kind": "event"
+              },
+              {
+                "id": "n2",
+                "name": "Get IsFalling",
+                "kind": "variable",
+                "variable": "IsFalling"
+              }
+            ],
+            "connections": [
+              {
+                "from": "n2.IsFalling",
+                "to": "n1.bCanEnterTransition"
+              }
+            ]
+          }
+        },
+        {
+          "from": "Jump",
+          "to": "Fall Loop",
+          "priority": 1,
+          "crossfade_duration": 0.30000001192092896,
+          "blend_mode": "Cubic",
+          "bidirectional": false,
+          "disabled": false,
+          "automatic_rule": true,
+          "automatic_rule_trigger_time": -1,
+          "min_time_before_reentry": -1,
+          "shared_rule": "",
+          "rule": {
+            "name": "Transition",
+            "kind": "transition_rule",
+            "nodes": [],
+            "connections": []
+          }
+        },
+        {
+          "from": "To Land",
+          "to": "Land",
+          "priority": 1,
+          "crossfade_duration": 0.10000000149011612,
+          "blend_mode": "Cubic",
+          "bidirectional": false,
+          "disabled": false,
+          "automatic_rule": false,
+          "automatic_rule_trigger_time": -1,
+          "min_time_before_reentry": -1,
+          "shared_rule": "",
+          "rule": {
+            "name": "Transition",
+            "kind": "transition_rule",
+            "nodes": [
+              {
+                "id": "n1",
+                "name": "Result",
+                "kind": "event"
+              },
+              {
+                "id": "n2",
+                "name": "Get IsFalling",
+                "kind": "variable",
+                "variable": "IsFalling"
+              },
+              {
+                "id": "n3",
+                "name": "NOT Boolean",
+                "kind": "call_function",
+                "function": "Not_PreBool",
+                "owner": "/Script/Engine.KismetMathLibrary"
+              }
+            ],
+            "connections": [
+              {
+                "from": "n2.IsFalling",
+                "to": "n3.A"
+              },
+              {
+                "from": "n3.ReturnValue",
+                "to": "n1.bCanEnterTransition"
+              }
+            ]
+          }
+        },
+        {
+          "from": "Land",
+          "to": "Locomotion",
+          "priority": 1,
+          "crossfade_duration": 0.4000000059604645,
+          "blend_mode": "Cubic",
+          "bidirectional": false,
+          "disabled": false,
+          "automatic_rule": true,
+          "automatic_rule_trigger_time": -1,
+          "min_time_before_reentry": -1,
+          "shared_rule": "",
+          "rule": {
+            "name": "Transition",
+            "kind": "transition_rule",
+            "nodes": [],
+            "connections": []
+          }
+        },
+        {
+          "from": "Land",
+          "to": "Locomotion",
+          "priority": 1,
+          "crossfade_duration": 0.5,
+          "blend_mode": "Cubic",
+          "bidirectional": false,
+          "disabled": false,
+          "automatic_rule": false,
+          "automatic_rule_trigger_time": -1,
+          "min_time_before_reentry": -1,
+          "shared_rule": "",
+          "rule": {
+            "name": "Transition",
+            "kind": "transition_rule",
+            "nodes": [
+              {
+                "id": "n1",
+                "name": "Result",
+                "kind": "event"
+              },
+              {
+                "id": "n2",
+                "name": "Get ShouldMove",
+                "kind": "variable",
+                "variable": "ShouldMove"
+              }
+            ],
+            "connections": [
+              {
+                "from": "n2.ShouldMove",
+                "to": "n1.bCanEnterTransition"
+              }
+            ]
+          }
+        }
+      ],
+      "entry_state": "Locomotion",
+      "aliases": [
+        {
+          "name": "To Falling",
+          "states": [
+            "Locomotion",
+            "Land"
+          ],
+          "global": false
+        },
+        {
+          "name": "To Land",
+          "states": [
+            "Jump",
+            "Fall Loop"
+          ],
+          "global": false
+        }
+      ]
+    }
+  }
+}

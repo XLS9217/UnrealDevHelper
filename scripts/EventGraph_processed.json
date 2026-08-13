@@ -1,0 +1,392 @@
+{
+  "asset_path": "/Game/Characters/Mannequins/Anims/Unarmed/ABP_Unarmed",
+  "inspection": {
+    "schema_version": 1,
+    "ok": true,
+    "data": {
+      "name": "EventGraph",
+      "kind": "event_graph",
+      "nodes": [
+        {
+          "id": "n1",
+          "name": "Event Blueprint Update Animation",
+          "kind": "event"
+        },
+        {
+          "id": "n2",
+          "name": "Event Blueprint Initialize Animation",
+          "kind": "event"
+        },
+        {
+          "id": "n3",
+          "name": "Get",
+          "kind": "variable",
+          "variable": "Character"
+        },
+        {
+          "id": "n4",
+          "name": "Get Owning Actor\nTarget is Anim Instance",
+          "kind": "call_function",
+          "function": "GetOwningActor",
+          "owner": "/Script/Engine.AnimInstance"
+        },
+        {
+          "id": "n5",
+          "name": "Cast To Character",
+          "kind": "event"
+        },
+        {
+          "id": "n6",
+          "name": "Get CharacterMovement",
+          "kind": "variable",
+          "variable": "CharacterMovement"
+        },
+        {
+          "id": "n7",
+          "name": "Set Character",
+          "kind": "variable",
+          "variable": "Character"
+        },
+        {
+          "id": "n8",
+          "name": "Set MovementComponent",
+          "kind": "variable",
+          "variable": "MovementComponent"
+        },
+        {
+          "id": "n9",
+          "name": "Sequence",
+          "kind": "event"
+        },
+        {
+          "id": "n10",
+          "name": "Set Velocity",
+          "kind": "variable",
+          "variable": "Velocity"
+        },
+        {
+          "id": "n11",
+          "name": "Get MovementComponent",
+          "kind": "variable",
+          "variable": "MovementComponent"
+        },
+        {
+          "id": "n12",
+          "name": "Get Velocity",
+          "kind": "variable",
+          "variable": "Velocity"
+        },
+        {
+          "id": "n13",
+          "name": "Vector Length XY",
+          "kind": "call_function",
+          "function": "VSizeXY",
+          "owner": "/Script/Engine.KismetMathLibrary"
+        },
+        {
+          "id": "n14",
+          "name": "Set GroundSpeed",
+          "kind": "variable",
+          "variable": "GroundSpeed"
+        },
+        {
+          "id": "n15",
+          "name": "Reroute Node",
+          "kind": "event"
+        },
+        {
+          "id": "n16",
+          "name": "Set ShouldMove",
+          "kind": "variable",
+          "variable": "ShouldMove"
+        },
+        {
+          "id": "n17",
+          "name": "Reroute Node",
+          "kind": "event"
+        },
+        {
+          "id": "n18",
+          "name": "Get GroundSpeed",
+          "kind": "variable",
+          "variable": "GroundSpeed"
+        },
+        {
+          "id": "n19",
+          "name": "float > float",
+          "kind": "call_function",
+          "function": "Greater_DoubleDouble",
+          "owner": "/Script/Engine.KismetMathLibrary",
+          "inputs": {
+            "B": "0.010000"
+          }
+        },
+        {
+          "id": "n20",
+          "name": "AND Boolean",
+          "kind": "call_function",
+          "function": "BooleanAND",
+          "owner": "/Script/Engine.KismetMathLibrary"
+        },
+        {
+          "id": "n21",
+          "name": "Get MovementComponent",
+          "kind": "variable",
+          "variable": "MovementComponent"
+        },
+        {
+          "id": "n22",
+          "name": "Get Current Acceleration\nTarget is Character Movement Component",
+          "kind": "call_function",
+          "function": "GetCurrentAcceleration",
+          "owner": "/Script/Engine.CharacterMovementComponent"
+        },
+        {
+          "id": "n23",
+          "name": "Not Equal (Vector)",
+          "kind": "call_function",
+          "function": "NotEqual_VectorVector",
+          "owner": "/Script/Engine.KismetMathLibrary"
+        },
+        {
+          "id": "n24",
+          "name": "Set IsFalling",
+          "kind": "variable",
+          "variable": "IsFalling"
+        },
+        {
+          "id": "n25",
+          "name": "Reroute Node",
+          "kind": "event"
+        },
+        {
+          "id": "n26",
+          "name": "Get MovementComponent",
+          "kind": "variable",
+          "variable": "MovementComponent"
+        },
+        {
+          "id": "n27",
+          "name": "Is Falling\nTarget is Nav Movement Component",
+          "kind": "call_function",
+          "function": "IsFalling",
+          "owner": "/Script/Engine.NavMovementComponent"
+        },
+        {
+          "id": "n28",
+          "name": "Set Direction",
+          "kind": "variable",
+          "variable": "Direction"
+        },
+        {
+          "id": "n29",
+          "name": "Calculate Direction\nTarget is Anim Instance",
+          "kind": "call_function",
+          "function": "CalculateDirection",
+          "owner": "/Script/Engine.AnimInstance"
+        },
+        {
+          "id": "n30",
+          "name": "Get Velocity",
+          "kind": "variable",
+          "variable": "Velocity"
+        },
+        {
+          "id": "n31",
+          "name": "Get Character",
+          "kind": "variable",
+          "variable": "Character"
+        },
+        {
+          "id": "n32",
+          "name": "Get Actor Rotation\nTarget is Actor",
+          "kind": "call_function",
+          "function": "K2_GetActorRotation",
+          "owner": "/Script/Engine.Actor"
+        },
+        {
+          "id": "n33",
+          "name": "Clamp (Float)",
+          "kind": "call_function",
+          "function": "FClamp",
+          "owner": "/Script/Engine.KismetMathLibrary",
+          "inputs": {
+            "Min": "-45.000000",
+            "Max": "45.000000"
+          }
+        },
+        {
+          "id": "n34",
+          "name": "Get MovementComponent",
+          "kind": "variable",
+          "variable": "MovementComponent"
+        },
+        {
+          "id": "n35",
+          "name": "Get bOrientRotationToMovement",
+          "kind": "variable",
+          "variable": "bOrientRotationToMovement"
+        },
+        {
+          "id": "n36",
+          "name": "Select",
+          "kind": "event"
+        }
+      ],
+      "connections": [
+        {
+          "from": "n1.then",
+          "to": "n3.execute"
+        },
+        {
+          "from": "n2.then",
+          "to": "n5.execute"
+        },
+        {
+          "from": "n3.then",
+          "to": "n9.execute"
+        },
+        {
+          "from": "n4.ReturnValue",
+          "to": "n5.Object"
+        },
+        {
+          "from": "n5.then",
+          "to": "n7.execute"
+        },
+        {
+          "from": "n5.AsCharacter",
+          "to": "n7.Character"
+        },
+        {
+          "from": "n6.CharacterMovement",
+          "to": "n8.MovementComponent"
+        },
+        {
+          "from": "n7.then",
+          "to": "n8.execute"
+        },
+        {
+          "from": "n7.Output_Get",
+          "to": "n6.self"
+        },
+        {
+          "from": "n9.then_0",
+          "to": "n15.InputPin"
+        },
+        {
+          "from": "n9.then_1",
+          "to": "n17.InputPin"
+        },
+        {
+          "from": "n9.then_2",
+          "to": "n25.InputPin"
+        },
+        {
+          "from": "n10.then",
+          "to": "n14.execute"
+        },
+        {
+          "from": "n10.Output_Get",
+          "to": "n13.A"
+        },
+        {
+          "from": "n11.MovementComponent",
+          "to": "n12.self"
+        },
+        {
+          "from": "n12.Velocity",
+          "to": "n10.Velocity"
+        },
+        {
+          "from": "n13.ReturnValue",
+          "to": "n14.GroundSpeed"
+        },
+        {
+          "from": "n14.then",
+          "to": "n28.execute"
+        },
+        {
+          "from": "n15.OutputPin",
+          "to": "n10.execute"
+        },
+        {
+          "from": "n17.OutputPin",
+          "to": "n16.execute"
+        },
+        {
+          "from": "n18.GroundSpeed",
+          "to": "n19.A"
+        },
+        {
+          "from": "n19.ReturnValue",
+          "to": "n20.A"
+        },
+        {
+          "from": "n20.ReturnValue",
+          "to": "n16.ShouldMove"
+        },
+        {
+          "from": "n21.MovementComponent",
+          "to": "n22.self"
+        },
+        {
+          "from": "n22.ReturnValue",
+          "to": "n23.A"
+        },
+        {
+          "from": "n23.ReturnValue",
+          "to": "n20.B"
+        },
+        {
+          "from": "n25.OutputPin",
+          "to": "n24.execute"
+        },
+        {
+          "from": "n26.MovementComponent",
+          "to": "n27.self"
+        },
+        {
+          "from": "n27.ReturnValue",
+          "to": "n24.IsFalling"
+        },
+        {
+          "from": "n29.ReturnValue",
+          "to": "n33.Value"
+        },
+        {
+          "from": "n29.ReturnValue",
+          "to": "n36.Option 0"
+        },
+        {
+          "from": "n30.Velocity",
+          "to": "n29.Velocity"
+        },
+        {
+          "from": "n31.Character",
+          "to": "n32.self"
+        },
+        {
+          "from": "n32.ReturnValue",
+          "to": "n29.BaseRotation"
+        },
+        {
+          "from": "n33.ReturnValue",
+          "to": "n36.Option 1"
+        },
+        {
+          "from": "n34.MovementComponent",
+          "to": "n35.self"
+        },
+        {
+          "from": "n35.bOrientRotationToMovement",
+          "to": "n36.Index"
+        },
+        {
+          "from": "n36.ReturnValue",
+          "to": "n28.Direction"
+        }
+      ]
+    }
+  }
+}
